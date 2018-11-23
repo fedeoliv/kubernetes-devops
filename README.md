@@ -2,11 +2,12 @@
 
 This is a lab to create a zero downtime scenario for Azure Kubernetes Service (AKS).
 
-## Prerquisties
+## Prerequisties
 
-- Git
-- Docker
-- Terraform
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for Windows or Linux
+- [Docker](https://docs.docker.com/install/) for Windows or Linux
+- [Terraform](https://www.terraform.io/intro/getting-started/install.html) for Windows or Linux
+- Visual Studio 2017 with [Visual Studio Tools for Kubernetes](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vs-tools-for-kubernetes)
 - Azure Subscription
 
 
