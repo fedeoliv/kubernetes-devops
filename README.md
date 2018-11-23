@@ -1,20 +1,21 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Azure Kubernetes Service DevOps
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+This is a lab to create a zero downtime scenario for Azure Kubernetes Service (AKS).
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+## Prerquisties
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+- Git
+- Docker
+- Terraform
+- Azure Subscription
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+
+## Step 1: Setup an Azure DevOps Project
+
+Azure DevOps Services allows you to easily set up automated pipelines to build, test and deploy your code to any platform. We are going to use Azure DevOps as our default platform. If you don't have an account, you can create one [here](https://azure.microsoft.com/en-us/services/devops/).
+
+![Azure DevOps](./docs/images/devops-project.jpg)
+
+Now you can clone the repository locally:
+
+    git clone https://<organization_name>@dev.azure.com/<organization_name>/<project_name>/_git/<project_name>
