@@ -9,6 +9,9 @@ This is a lab to create a zero downtime scenario for Azure Kubernetes Service (A
 - [Terraform](https://www.terraform.io/intro/getting-started/install.html) for Windows or Linux
 - [Istio](https://istio.io/docs/setup/kubernetes/download-release/) for Windows or Linux
 
+## CI/CD Workflow
+
+![Azure DevOps](./docs/images/devops-workflow.jpg)
 
 ## Step 1: Setup an Azure DevOps Project
 
