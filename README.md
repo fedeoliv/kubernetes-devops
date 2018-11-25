@@ -7,7 +7,6 @@ This is a lab to create a zero downtime scenario for Azure Kubernetes Service (A
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for Windows or Linux
 - [Docker](https://docs.docker.com/install/) for Windows or Linux
 - [Terraform](https://www.terraform.io/intro/getting-started/install.html) v1.19 or later for Windows or Linux
-- [Istio](https://istio.io/docs/setup/kubernetes/download-release/) for Windows or Linux
 - Azure CLI
 - Windows 10 with WSL
 
