@@ -163,9 +163,25 @@ The script will automatically create both resources and add the account access k
 
 ![Terraform storage](./docs/images/terraform-storage.jpg)
 
+### **Create Multiple Environments**
+
+[Terraform Workspaces](https://www.terraform.io/docs/state/workspaces.html) allows you to manage multiple distinct sets of infrastructure resources/environments. Run the `create-workspaces.sh` script to create `dev`, `tst`, `stg` and `prod` workspaces:
+
+    ./create-workspaces.sh  
+
+Now run the following command to make sure all workspaces were created:
+
+    terraform workspace list
+
+![Terraform workspaces](./docs/images/terraform-workspaces.jpg)
+
 ### **Initialize Terraform**
 
-Then initialize Terraform, linking to the storage account:
+We have to initialize Terraform for each workspace (dev, tst, stg and prod). First, let's select the **prod** environment:
+
+    terraform workspace select prod
+
+Now you're ready to deploy resources for production. Initialize Terraform, linking to the storage account:
 
 ```sh
 terraform init -backend-config="storage_account_name=YOUR_STORAGE_ACCOUNT_NAME" \
@@ -197,12 +213,8 @@ variable "rbac_client_app_id" {
 }
 ```
 
-Terraform execution plan is a convenient way to check whether the set of infrastructure changes matches your expectations without making any changes to real resources or to the state. Run the following command:
+Run the following command to start the execution plan and wait for the AKS to be completed:
 
-    terraform plan -out "out.plan"
-
-Then apply the execution plan and wait for the AKS to be completed:
-
-    terraform apply "out.plan"
+    terraform apply
 
 
