@@ -39,13 +39,10 @@ Switch to the new directory on Portal, then click on `Azure Active Directory` an
 
 ![](./docs/images/ad-directory.jpg)
 
-<<<<<<< HEAD
 ### **Azure Subscription**
 
 If you don't have an Azure subscription for the tenant, you can get a free account [here](https://azure.microsoft.com/en-us/free/).
 
-=======
->>>>>>> 4bba5a55fce9cc8917383bff9d46e6ecef4262e8
 ### **Copy your tenant ID**
 
 In the next steps, you'll need to know the tenant ID to provision Active Directory applications. In the Azure Portal, go to your user info and select `Switch directory`. 
@@ -58,17 +55,10 @@ In the next steps, you'll need to know the tenant ID to provision Active Directo
 
 Now prepare your Azure CLI to login in the new tenant:
 
-<<<<<<< HEAD
     $ az login -t your_tenant_id
     
 
 ### **Active Directory applications**
-=======
-    $ az login -t your_tenant_id --allow-no-subscriptions
-    
-
-### **Active Directy applications**
->>>>>>> 4bba5a55fce9cc8917383bff9d46e6ecef4262e8
 
 To enable Azure AD authorization for Kubernetes, you need to create two applications: **server** and **client** apps.
 
@@ -93,24 +83,16 @@ These are the environment variables needed to create the server application:
 Access the `scripts/azure-ad` directory and open the `create-server-app.sh` script in your preferred text editor to edit the environment variables:
 
 ```bash
-<<<<<<< HEAD
 export RBAC_AZURE_TENANT_ID="YOUR_TENANT_ID"
 export RBAC_SERVER_APP_NAME="YOUR_APP_NAME"
 export RBAC_SERVER_APP_URL="http://your_app_name"
 export RBAC_SERVER_APP_SECRET="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)"
-=======
-    export RBAC_AZURE_TENANT_ID="YOUR_TENANT_ID"
-    export RBAC_SERVER_APP_NAME="YOUR_APP_NAME"
-    export RBAC_SERVER_APP_URL="http://your_app_name"
-    export RBAC_SERVER_APP_SECRET="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)"
->>>>>>> 4bba5a55fce9cc8917383bff9d46e6ecef4262e8
 ```
 
 Then run the script:
 
     ./create-server-app.sh
 
-<<<<<<< HEAD
 After the server app creation, copy these environment variables: **RBAC_SERVER_APP_ID**, **RBAC_SERVER_APP_OAUTH2PERMISSIONS_ID** and **RBAC_SERVER_APP_SECRET**. You will need these variables to create the client application.
 
 ![AD grant permissions](./docs/images/ad-server-created.jpg)
@@ -222,8 +204,5 @@ Terraform execution plan is a convenient way to check whether the set of infrast
 Then apply the execution plan and wait for the AKS to be completed:
 
     terraform apply "out.plan"
-=======
-Now open the Azure Portal and search for the server application on Azure `Active Directory -> App registrations -> View all applications -> YOUR_APP_NAME -> Settings -> Required Permissions`. Click on `Grant permissions` button and accept to permissions for your tenant:
 
-![AD grant permissions](./docs/images/ad-grant-permissions.jpg)
->>>>>>> 4bba5a55fce9cc8917383bff9d46e6ecef4262e8
+
