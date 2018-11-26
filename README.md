@@ -40,32 +40,25 @@ AKS can be configured to use Azure Active Directory (AD) for user authentication
 
 ### **Active Directory tenant**
 
-Integration with Active Directory requires a *tenant*. If you don't have an AD tenant, create one through Azure Portal:
-
-![](./docs/images/ad-create.jpg)
-
-Switch to the new directory on Portal, then click on `Azure Active Directory` and make sure it's pointing to the new directory.
-
-![](./docs/images/ad-directory.jpg)
+Integration with Active Directory requires a *tenant*. If you already have a tenant but want to create a new one, you can follow the tutorial [here](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant).
 
 ### **Azure Subscription**
 
-If you don't have an Azure subscription for the tenant, you can get a free account [here](https://azure.microsoft.com/en-us/free/).
+Create new resources requires an Azure subscription. If you don't have it for the tenant, you can get a free account [here](https://azure.microsoft.com/en-us/free/) or create an enterprise subscription.
 
 ### **Copy your tenant ID**
 
-In the next steps, you'll need to know the tenant ID to provision Active Directory applications. In the Azure Portal, go to your user info and select `Switch directory`. 
+In the next steps, you'll need to know the tenant ID to provision Active Directory applications. We can get it from the Azure CLI:
 
-![AD directory](./docs/images/ad-switch-directory.jpg)
+First, sign in with your account:
 
-![AD directory](./docs/images/ad-tenant-id.jpg)
+    az login
 
-### **Switch to the new tenant on Azure CLI**
+Now list your accounts:
 
-Now prepare your Azure CLI to login in the new tenant:
+    az account list
 
-    $ az login -t your_tenant_id
-    
+In the JSON structure, copy the `tenantId` value. Additionaly, you can get the tenant ID from the Azure Portal (`Active Directory -> Properties -> Directory ID`).
 
 ### **Active Directory applications**
 
