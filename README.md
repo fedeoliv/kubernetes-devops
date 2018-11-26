@@ -10,9 +10,19 @@ This is a lab to create a zero downtime scenario for Azure Kubernetes Service (A
 - Azure CLI
 - Windows 10 with WSL
 
-## CI/CD Workflow
+## Deployment Workflow
 
 ![Azure DevOps](./docs/images/devops-workflow.jpg)
+
+Deployment environments vary significantly according to your architecture needs. In this lab we're going to work with a common 4-tier architecture: **development**, **testing**, **staging** and **production**.
+
+- **Development**: A dedicated environment that allows developers to make code changes in applications to implement new features and fixing bugs. Developers perform unit testing for features validation and, when a new version is ready with all unit tests passing, the code is promoted to testing environment.
+
+- **Testing**: A dedicated environment that allows testers execute test cases. Upon test failures/bugs, they can request bug fixes to dev team and provide detailed test and result logs. If all tests pass, the code is promoted to  staging environment.
+
+- **Staging:** A mirror environment meant to mimic production as precisely as possible for quality assurance. It's an environment to test all installation/configuration/migration scripts and procedures, before they are applied to production environment. Another important step in staging is performing load testing. When the new release is ready, the code is promoted to production. When deploying a new release to production, you can use some techniques to reduce risks and downtime, like **canary release** or **blue/green deployment**.
+
+- **Production**: The environment where end users directly interact with. 
 
 ## Step 1: Setup an Azure DevOps Project
 
