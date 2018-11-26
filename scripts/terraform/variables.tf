@@ -1,22 +1,3 @@
-variable "client_id" {
-    default = ""
-}
-variable "client_secret" {
-    default = ""
-}
-variable "tenant_id" {
-    default = ""
-}
-variable "rbac_server_app_id" {
-    default = ""
-}
-variable "rbac_server_app_secret" {
-    default = ""
-}
-variable "rbac_client_app_id" {
-    default = ""
-}
-
 variable "workspace_to_environment_map" {
     description = "A set of known environments (workspaces)"
     type = "map"
@@ -105,3 +86,61 @@ variable "k8s_dns_prefix" {
         prod    = "contosocluster"
     }
 }
+
+# Service Principal
+data "azurerm_key_vault_secret" "sp_id_dev" {
+  name      = "sp-id-dev"
+  vault_uri = "https://<your_keyvault_name>.vault.azure.net/"
+}
+data "azurerm_key_vault_secret" "sp_secret_dev" {
+  name      = "sp-secret-dev"
+  vault_uri = "https://<your_keyvault_name>.vault.azure.net/"
+}
+data "azurerm_key_vault_secret" "sp_id_tst" {
+  name      = "sp-id-tst"
+  vault_uri = "https://<your_keyvault_name>.vault.azure.net/"
+}
+data "azurerm_key_vault_secret" "sp_secret_tst" {
+  name      = "sp-secret-tst"
+  vault_uri = "https://<your_keyvault_name>.vault.azure.net/"
+}
+data "azurerm_key_vault_secret" "sp_id_stg" {
+  name      = "sp-id-stg"
+  vault_uri = "https://<your_keyvault_name>.vault.azure.net/"
+}
+data "azurerm_key_vault_secret" "sp_secret_stg" {
+  name      = "sp-secret-stg"
+  vault_uri = "https://<your_keyvault_name>.vault.azure.net/"
+}
+data "azurerm_key_vault_secret" "sp_id_prod" {
+  name      = "sp-id-prod"
+  vault_uri = "https://<your_keyvault_name>.vault.azure.net/"
+}
+data "azurerm_key_vault_secret" "sp_secret_prod" {
+  name      = "sp-secret-prod"
+  vault_uri = "https://<your_keyvault_name>.vault.azure.net/"
+}
+
+# AKS RBAC
+variable "tenant_id" {
+    description = "Tenant ID used for AKS RBAC"
+    default = ""
+}
+variable "rbac_server_app_id" {
+    description = "AAD server app ID used for AKS RBAC"
+    default = ""
+}
+variable "rbac_server_app_secret" {
+    description = "AAD server app secret used for AKS RBAC"
+    default = ""
+}
+variable "rbac_client_app_id" {
+    description = "AAD client app ID used for AKS RBAC"
+    default = ""
+}
+
+
+
+
+
+

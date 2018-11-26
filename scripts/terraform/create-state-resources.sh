@@ -6,7 +6,7 @@ STORAGE_ACCOUNT_NAME=tstate$RANDOM
 CONTAINER_NAME=tstate
 LOCATION=eastus
 
-KV_NAME=contosokvault
+KV_NAME=<your_keyvault_name>
 KV_SECRET_NAME=terraform-backend-key
 
 # Create resource group

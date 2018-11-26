@@ -1,6 +1,18 @@
 locals {
     # If the Terraform workspace name does not exist in the map, it will default to dev
     environment = "${lookup(var.workspace_to_environment_map, terraform.workspace, "dev")}"
+    client_id = {
+        dev     = "${data.azurerm_key_vault_secret.sp_id_dev.value}"
+        tst     = "${data.azurerm_key_vault_secret.sp_id_tst.value}"
+        staging = "${data.azurerm_key_vault_secret.sp_id_stg.value}"
+        prod    = "${data.azurerm_key_vault_secret.sp_id_prod.value}"
+    }
+    client_secret = {
+        dev     = "${data.azurerm_key_vault_secret.sp_secret_dev.value}"
+        tst     = "${data.azurerm_key_vault_secret.sp_secret_tst.value}"
+        staging = "${data.azurerm_key_vault_secret.sp_secret_stg.value}"
+        prod    = "${data.azurerm_key_vault_secret.sp_secret_prod.value}"
+    }
 }
 
 resource "azurerm_resource_group" "k8s" {
@@ -33,12 +45,12 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     }
 
     service_principal {
-        client_id     = "${var.client_id}"
-        client_secret = "${var.client_secret}"
+        client_id     = "${local.client_id[local.environment]}"
+        client_secret = "${local.client_secret[local.environment]}"
     }
 
     tags {
-        Environment = "Development"
+        Environment = "${local.environment}"
     }
 
     role_based_access_control {
