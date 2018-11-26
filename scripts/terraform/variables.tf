@@ -1,14 +1,3 @@
-variable "workspace_to_environment_map" {
-    description = "A set of known environments (workspaces)"
-    type = "map"
-    default = {
-        dev     = "dev"
-        tst     = "tst"
-        staging = "stg"
-        prod    = "prod"
-    }
-}
-
 variable "client_id" {
     default = ""
 }
@@ -28,6 +17,17 @@ variable "rbac_client_app_id" {
     default = ""
 }
 
+variable "workspace_to_environment_map" {
+    description = "A set of known environments (workspaces)"
+    type = "map"
+    default = {
+        dev     = "dev"
+        tst     = "tst"
+        staging = "stg"
+        prod    = "prod"
+    }
+}
+
 variable resource_group_name {
     description = "Resource group name"
     type = "map"
@@ -35,7 +35,7 @@ variable resource_group_name {
         dev     = "rg-contoso-dev"
         tst     = "rg-contoso-tst"
         staging = "rg-contoso-stg"
-        prod    = "rg-contoso-prod"
+        prod    = "rg-contoso"
     }
 }
 
@@ -90,7 +90,6 @@ variable "k8s_os_disk_size" {
         prod    = 30
     }
 }
-
 
 variable "k8s_ssh_public_key" {
     default = "~/.ssh/id_rsa.pub"

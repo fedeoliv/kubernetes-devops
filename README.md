@@ -177,6 +177,24 @@ Now run the following command to make sure all workspaces were created:
 
 ![Terraform workspaces](./docs/images/terraform-workspaces.jpg)
 
+### **Environments Resources**
+
+This is an overview of all Kubernetes clusters that will be created by Terraform:
+
+| Environment | Resource Group | Cluster Name | Nodes | OS 
+| -------------- | -------------- | -------------- | -------------- | -------------- |
+| prod | rg-contoso | contosocluster | 3 (Standard_DS2_v2) | Linux (30GB disk size) |
+| stg | rg-contoso-stg | contosoclusterstg | 3 (Standard_DS2_v2) | Linux (30GB disk size) |
+| tst | rg-contoso-tst | contosoclustertst | 1 (Standard_B2s) | Linux (30GB disk size) |
+| dev | rg-contoso-dev | contosoclusterdev | 1 (Standard_B2s) | Linux (30GB disk size) |
+
+These resources will be created due to some assumptions:
+
+- We want a staging system that *exactly mimics the production system*. We are going to create an exact replica of the production cluster instead of working in a single cluster with *namespaces*  specially because we want to avoid any unnecessary side effects (performance impact, for example).
+- For tst and dev environments you can create separate clusters or work on a single cluster using namespaces.
+
+Therefore it's important to mention **the number of resources to be created will vary according to your requirements and decisions based on risk, cost and complexity**.
+
 ### **Initialize Terraform**
 
 We have to initialize Terraform for each workspace (dev, tst, stg and prod). First, let's select the **prod** environment:
@@ -219,4 +237,5 @@ Run the following command to start the execution plan and wait for the AKS to be
 
     terraform apply
 
+Repeat the process until all environments are completed (you can reuse server and client apps for all environments).
 
