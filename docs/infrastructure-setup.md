@@ -6,12 +6,14 @@ We are going to use [Terraform](https://www.terraform.io/https://www.terraform.i
 
 This is an overview of all Kubernetes clusters that will be created by Terraform:
 
-| Environment | Resource Group | Cluster Name | Nodes | OS 
-| -------------- | -------------- | -------------- | -------------- | -------------- |
-| prod | rg-contoso | contosocluster | 3 (Standard_DS2_v2) | Linux (30GB disk size) |
-| stg | rg-contoso-stg | contosoclusterstg | 3 (Standard_DS2_v2) | Linux (30GB disk size) |
-| tst | rg-contoso-tst | contosoclustertst | 1 (Standard_B2s) | Linux (30GB disk size) |
-| dev | rg-contoso-dev | contosoclusterdev | 1 (Standard_B2s) | Linux (30GB disk size) |
+| Environment | Resource Group | Resource Type | Description |
+| -------------- | -------------- | -------------- | -------------- |
+| prod | rg-contoso | Azure Kubernetes Service |  3 Linux nodes (Standard_DS2_v2) |
+| prod | rg-contoso | Azure Container Registry | Standard |
+| prod | rg-contoso | Azure Storage | Standard |
+| stg | rg-contoso-stg | Azure Kubernetes Service | 3 Linux nodes (Standard_DS2_v2) |
+| tst | rg-contoso-tst | Azure Kubernetes Service  | 1 Linux node (Standard_B2s) |
+| dev | rg-contoso-dev | Azure Kubernetes Service | 1 Linux node (Standard_B2s) |
 
 These resources will be created due to some assumptions:
 

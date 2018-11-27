@@ -24,6 +24,17 @@ variable location {
     default = "East US"
 }
 
+# Container Registry
+variable "storage_account_name" {
+    description = "Storage account name that will be used for Container Registry"
+    default = "contosostgacct"
+}
+variable "container_registry_name" {
+    description = "Container Registry name"
+    default = "contosoregistry"
+}
+
+
 # Kubernetes
 variable k8s_cluster_name {
     description = "Kubernetes cluster name"
