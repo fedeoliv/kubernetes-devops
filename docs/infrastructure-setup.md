@@ -129,3 +129,61 @@ Run the following command to start the execution plan and wait for the AKS to be
     terraform apply
 
 Repeat the process until all environments are completed (you can reuse server and client apps for all environments).
+
+## Create Kubernetes RBAC bindings
+
+Now we need to use the Kubernetes API (kubectl) to provide access to users and groups of your Active Directory. To do that, we need to specify four top-level types for the RBAC API:
+- **Role**: It contains rules that represent a set of permissions (there are no "deny" rules).
+- **RoleBinding**: It grants the role permissions to a user or set of users.
+- **ClusterRole**: It contains cluster-wide rules that represent a set of permissions.
+- **ClusterRoleBinding**: It grants permissions at the cluster level and in all namespaces.
+
+For more info, take a look at this documentation: [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/). To start the configuration, connect to the cluster by getting the AKS credentials as admin:
+
+    az aks get-credentials -n CLUSTER_NAME -g RESOURCE_GROUP_NAME --admin
+
+### Azure AD Groups and Accounts
+We are going to create a role binding for all members of an Azure AD group, but it is also possible to do that to an AAD account. Before going to the next step, make sure you already have a group with one or more users added. You can follow the tutorial described [here](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-groups-create-azure-portal) to create groups and accounts.
+
+### Create the Role Binding resource
+
+Open the `cluster-admin-rolebinding.yaml` file located on `config/aks` directory and update it with your group name:
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+ name: contoso-cluster-admins
+roleRef:
+ apiGroup: rbac.authorization.k8s.io
+ kind: ClusterRole
+ name: cluster-admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: "YOUR_GROUP_NAME"
+```
+
+Now create the role binding resource through the Kubernetes API:
+
+    kubectl apply -f cluster-admin-rolebinding.yaml
+
+## Connect to the AKS cluster with Active Directory
+
+To test our connection with AKS through Active Directory, let's first connect to the cluster without admin access (removing the `--admin` flag):
+
+    az aks get-credentials -n CLUSTER_NAME -g RESOURCE_GROUP_NAME 
+
+Now let's try to access the Kubernetes nodes:
+
+    kubectl get nodes
+
+    To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code FSZB23AL5 to authenticate.
+
+![AAD Device Login](./images/aad-device-login.jpg)
+
+Done! Now you can apply the same or different role bindings for other clusters we created in other environments (dev, tst, stg and prod).
+
+## Next Steps
+
+- [Setup an Azure DevOps Project](./devops-project-setup.md)
